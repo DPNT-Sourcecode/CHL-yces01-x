@@ -47,7 +47,23 @@ public class CheckliteSolution {
         }
 
         public Integer calculatePriceFor(Integer quantity) {
+            if (multiBuyAvailable()) {
+                return calculateMultiBuyPrice(quantity);
+            }
+
             return price * quantity;
+
+        }
+
+        private boolean multiBuyAvailable() {
+            return multiBuyQuantity != null;
+        }
+
+        private Integer calculateMultiBuyPrice(Integer quantity) {
+            int multiBuys = quantity / multiBuyQuantity;
+            int remainderNonMultiBuys = quantity % multiBuyQuantity;
+
+            return (multiBuys * multiBuyPrice) + (remainderNonMultiBuys * price);
         }
     }
 }
