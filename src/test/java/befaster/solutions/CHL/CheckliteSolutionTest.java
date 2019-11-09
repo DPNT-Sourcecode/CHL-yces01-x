@@ -63,4 +63,9 @@ public class CheckliteSolutionTest {
     public void givenTwoSpecialOffersX4YOnA_whenAddingSecondSpecialOffer_thenOfferIsApplied() {
         assertThat(checkliteSolution.checklite("AAAAA"), Matchers.is(200));
     }
+
+    @Test
+    public void givenTwoSpecialOffersX4YOnA_whenTwoOffersApply_thenChepestShouldBeApplied() {
+        assertThat(checkliteSolution.checklite("AAAAAA"), Matchers.is(250));
+    }
 }

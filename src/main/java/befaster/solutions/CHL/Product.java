@@ -12,15 +12,11 @@ class Product {
         this.price = price;
     }
 
-    public Product(int price, int multiBuyQuantity, int multiBuyAmount) {
-        this.price = price;
-        multibuyOffers.add(new Multibuy(multiBuyQuantity, multiBuyAmount));
-    }
-
     public Product(int price, List<Multibuy> multibuyOffers) {
         this.price = price;
         this.multibuyOffers = multibuyOffers;
     }
+
 
     public Integer calculatePriceFor(Integer quantity) {
         if (multibuyOffers.isEmpty()) {
@@ -49,7 +45,7 @@ class Product {
             this.multiBuyPrice = multiBuyPrice;
         }
 
-        private Integer calculateMultiBuyPrice(Integer quantity, Integer individualPrice) {
+        Integer calculateMultiBuyPrice(Integer quantity, Integer individualPrice) {
 
             int multiBuys = quantity / multiBuyQuantity;
             int remainderNonMultiBuys = quantity % multiBuyQuantity;
@@ -58,5 +54,3 @@ class Product {
         }
     }
 }
-
-

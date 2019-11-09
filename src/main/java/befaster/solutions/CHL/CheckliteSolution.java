@@ -1,20 +1,25 @@
 package befaster.solutions.CHL;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 
 public class CheckliteSolution {
 
     private Map<Character, Product> products = new HashMap<>();
 
     public CheckliteSolution() {
-        products.put('A', new Product(50, Arrays.asList(
+        products.put('A', new Product(50, asList(
                 new Product.Multibuy(3, 130),
                 new Product.Multibuy(5, 200)))
         );
 
-        products.put('B', new Product(30, 2, 45));
+        products.put('B', new Product(30, singletonList(
+                new Product.Multibuy(2, 45)))
+        );
+
         products.put('C', new Product(20));
         products.put('D', new Product(15));
     }
@@ -56,5 +61,3 @@ public class CheckliteSolution {
     private static class InvalidSkuException extends RuntimeException {
     }
 }
-
-
