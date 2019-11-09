@@ -38,11 +38,16 @@ public class CheckliteSolution {
         }
     }
 
-    private void removeFromCounter(Map<Character, Integer> productCounter, Character freeSku) {
-        Integer countForFreeProduct = productCounter.get(freeSku);
+    private void removeFromCounter(Map<Character, Integer> productCounter, Product.MatchingCrossProductOffer matchingCrossProductOffer) {
+        Integer countForFreeProduct = productCounter.get(matchingCrossProductOffer.getSku());
 
         if (countForFreeProduct != null && countForFreeProduct > 0) {
-            productCounter.put(freeSku, countForFreeProduct - 1);
+            countForFreeProduct = countForFreeProduct - matchingCrossProductOffer.getQuantityFree();
+            if (countForFreeProduct < 0) {
+                countForFreeProduct = 0;
+            }
+            
+            productCounter.put(matchingCrossProductOffer.getSku(), countForFreeProduct);
         }
     }
 
@@ -74,3 +79,4 @@ public class CheckliteSolution {
     private static class InvalidSkuException extends RuntimeException {
     }
 }
+

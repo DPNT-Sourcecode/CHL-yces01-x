@@ -83,7 +83,7 @@ class Product {
         }
     }
 
-     class MatchingCrossProductOffer {
+    class MatchingCrossProductOffer {
         char sku;
         int quantityFree;
 
@@ -91,6 +91,15 @@ class Product {
             this.sku = sku;
             this.quantityFree = quantityFree;
         }
+
+        public char getSku() {
+            return sku;
+        }
+
+        public int getQuantityFree() {
+            return quantityFree;
+        }
     }
 }
+
 
