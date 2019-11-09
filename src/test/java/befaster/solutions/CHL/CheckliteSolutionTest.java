@@ -88,4 +88,20 @@ public class CheckliteSolutionTest {
     public void givenFourEsAndThreeBs_thenTotalShouldBeForFourEsAndOneB() {
         assertThat(checkliteSolution.checklite("EEEEBBB"), Matchers.is(190));
     }
+
+    @Test
+    public void givenEightAs_thenTotalShouldBeForFourEsAndOneB() {
+        assertThat(checkliteSolution.checklite("AAAAAAAA"), Matchers.is(330));
+    }
+
+    @Test
+    public void givenNineAs_thenTotalShouldBeForFourEsAndOneB() {
+        assertThat(checkliteSolution.checklite("AAAAAAAAA"), Matchers.is(380));
+    }
+
+    @Test
+    public void givenMix_thenTotalShouldBeForFourEsAndOneB() {
+        assertThat(checkliteSolution.checklite("AAAAAEEBAAABB"), Matchers.is(380));
+
+    }
 }
