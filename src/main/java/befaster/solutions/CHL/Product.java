@@ -45,7 +45,7 @@ class Product {
             return Optional.empty();
         }
 
-        if (quantityInBasket > crossProductOffer.buyingQuantity) {
+        if (quantityInBasket >= crossProductOffer.buyingQuantity) {
             return Optional.of(crossProductOffer.freeCrossProduct);
         }
 
@@ -81,4 +81,5 @@ class Product {
         }
     }
 }
+
 

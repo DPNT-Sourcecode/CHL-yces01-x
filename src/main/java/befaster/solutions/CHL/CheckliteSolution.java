@@ -34,7 +34,9 @@ public class CheckliteSolution {
             Map<Character, Integer> productCounter = countEachProductInBasket(basket);
 
             for (char sku : productCounter.keySet()) {
-                products.get(sku).findMatchingCrossProductOffer(productCounter.get(sku)).ifPresent(freeSku -> removeFromCounter(productCounter, freeSku));
+                products.get(sku)
+                        .findMatchingCrossProductOffer(productCounter.get(sku))
+                        .ifPresent(freeSku -> removeFromCounter(productCounter, freeSku));
             }
 
             return calculateTotalPriceForProductCounts(productCounter);
@@ -79,4 +81,5 @@ public class CheckliteSolution {
     private static class InvalidSkuException extends RuntimeException {
     }
 }
+
 
