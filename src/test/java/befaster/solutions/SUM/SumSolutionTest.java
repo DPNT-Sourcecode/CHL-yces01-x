@@ -20,10 +20,15 @@ public class SumSolutionTest {
         assertThat(sum.compute(1, 1), equalTo(2));
     }
 
-    @Test
-    
+    @Test(expected = SumSolution.OutOfBoundsException.class)
     public void givenAnIntegerIsLessThan0_thenThrowException() {
+        sum.compute(-1, 1);
+    }
 
+    @Test(expected = SumSolution.OutOfBoundsException.class)
+    public void givenAnIntegerIsGreaterThan100_thenThrowException() {
+        sum.compute(101, 1);
     }
 }
+
 
