@@ -13,20 +13,13 @@ public class CheckliteSolution {
     public CheckliteSolution() {
         products.put('A', new Product(50, asList(
                 new Product.MultibuyOffer(3, 130),
-                new Product.MultibuyOffer(5, 200)))
-        );
-
+                new Product.MultibuyOffer(5, 200))));
         products.put('B', new Product(30, singletonList(
-                new Product.MultibuyOffer(2, 45)))
-        );
-
+                new Product.MultibuyOffer(2, 45))));
         products.put('C', new Product(20));
-
         products.put('D', new Product(15));
-
         products.put('E', new Product(40,
-                new Product.CrossProductOffer(2, 'B'))
-        );
+                new Product.CrossProductOffer(2, 'B')));
     }
 
     public Integer checklite(String basket) {
@@ -81,5 +74,3 @@ public class CheckliteSolution {
     private static class InvalidSkuException extends RuntimeException {
     }
 }
-
-

@@ -40,7 +40,7 @@ class Product {
 
     }
 
-    public Optional<Character> findMatchingCrossProductOffer(Integer quantityInBasket) {
+    public Optional<MatchingCrossProductOffer> findMatchingCrossProductOffer(Integer quantityInBasket) {
         if (crossProductOffer == null) {
             return Optional.empty();
         }
@@ -81,5 +81,3 @@ class Product {
         }
     }
 }
-
-

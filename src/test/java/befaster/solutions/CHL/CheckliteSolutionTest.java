@@ -73,4 +73,9 @@ public class CheckliteSolutionTest {
     public void givenTwoEsAndOneB_thenTotalShouldBeForTwoEsOnly() {
         assertThat(checkliteSolution.checklite("EEB"), Matchers.is(80));
     }
+
+    @Test
+    public void givenFourEsAndTwoBs_thenTotalShouldBeForFourEsOnly() {
+        assertThat(checkliteSolution.checklite("EEEEBB"), Matchers.is(160));
+    }
 }
