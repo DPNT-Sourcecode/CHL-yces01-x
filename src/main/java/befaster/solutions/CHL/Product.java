@@ -85,19 +85,19 @@ class Product {
 
     class MatchingCrossProductOffer {
         char sku;
-        int quantityFree;
+        int freeQuantity;
 
-        public MatchingCrossProductOffer(char sku, int quantityFree) {
+        public MatchingCrossProductOffer(char sku, int freeQuantity) {
             this.sku = sku;
-            this.quantityFree = quantityFree;
+            this.freeQuantity = freeQuantity;
         }
 
         public char getSku() {
             return sku;
         }
 
-        public int getQuantityFree() {
-            return quantityFree;
+        public int getFreeQuantity() {
+            return freeQuantity;
         }
     }
 }

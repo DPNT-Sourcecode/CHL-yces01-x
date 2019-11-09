@@ -42,13 +42,17 @@ public class CheckliteSolution {
         Integer countForFreeProduct = productCounter.get(matchingCrossProductOffer.getSku());
 
         if (countForFreeProduct != null && countForFreeProduct > 0) {
-            countForFreeProduct = countForFreeProduct - matchingCrossProductOffer.getQuantityFree();
-            if (countForFreeProduct < 0) {
-                countForFreeProduct = 0;
-            }
-            
+            countForFreeProduct = calculateNewQuantityOfFreeProduct(matchingCrossProductOffer, countForFreeProduct);
             productCounter.put(matchingCrossProductOffer.getSku(), countForFreeProduct);
         }
+    }
+
+    private Integer calculateNewQuantityOfFreeProduct(Product.MatchingCrossProductOffer matchingCrossProductOffer, Integer countForFreeProduct) {
+        countForFreeProduct = countForFreeProduct - matchingCrossProductOffer.getFreeQuantity();
+        if (countForFreeProduct < 0) {
+            countForFreeProduct = 0;
+        }
+        return countForFreeProduct;
     }
 
     private Map<Character, Integer> countEachProductInBasket(String basket) {
