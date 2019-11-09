@@ -29,23 +29,16 @@ class Product {
 
         List<Integer> offerCalculations = new ArrayList<>();
         for (Multibuy multibuyOffer : multibuyOffers) {
-            offerCalculations.add(calculateMultiBuyPrice(quantity, multibuyOffer));
+            offerCalculations.add(multibuyOffer.calculateMultiBuyPrice(quantity, price));
         }
 
         Collections.sort(offerCalculations);
 
         return offerCalculations.get(0);
 
-
     }
 
-    private Integer calculateMultiBuyPrice(Integer quantity, Multibuy multibuyOffer) {
 
-        int multiBuys = quantity / multibuyOffer.multiBuyQuantity;
-        int remainderNonMultiBuys = quantity % multibuyOffer.multiBuyQuantity;
-
-        return (multiBuys * multibuyOffer.multiBuyPrice) + (remainderNonMultiBuys * price);
-    }
 
     public static class Multibuy {
         int multiBuyQuantity;
@@ -55,6 +48,15 @@ class Product {
             this.multiBuyQuantity = multiBuyQuantity;
             this.multiBuyPrice = multiBuyPrice;
         }
+
+        private Integer calculateMultiBuyPrice(Integer quantity, Integer individualPrice) {
+
+            int multiBuys = quantity / multiBuyQuantity;
+            int remainderNonMultiBuys = quantity % multiBuyQuantity;
+
+            return (multiBuys * multiBuyPrice) + (remainderNonMultiBuys * individualPrice);
+        }
     }
 }
+
 
