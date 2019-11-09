@@ -33,4 +33,14 @@ public class CheckliteSolutionTest {
     public void givenFourAProducts_thenTotalIsSpecialOfferPlusOneTotalling180() {
         assertThat(checkliteSolution.checklite("AAAA"), Matchers.is(180));
     }
+
+    @Test
+    public void givenFourAProductsAndOneB_thenTotalIs210() {
+        assertThat(checkliteSolution.checklite("AAAAB"), Matchers.is(210));
+    }
+
+    @Test
+    public void givenFourAProductsAndFourB_thenTotalIs255() {
+        assertThat(checkliteSolution.checklite("AAAABBBB"), Matchers.is(270));
+    }
 }
