@@ -46,7 +46,9 @@ class Product {
         }
 
         if (quantityInBasket >= crossProductOffer.buyingQuantity) {
-            return Optional.of(crossProductOffer.freeCrossProduct);
+            return Optional.of(new MatchingCrossProductOffer(
+                    crossProductOffer.freeCrossProduct, quantityInBasket / crossProductOffer.buyingQuantity)
+            );
         }
 
         return Optional.empty();
@@ -80,4 +82,15 @@ class Product {
             this.freeCrossProduct = freeCrossProduct;
         }
     }
+
+     class MatchingCrossProductOffer {
+        char sku;
+        int quantityFree;
+
+        public MatchingCrossProductOffer(char sku, int quantityFree) {
+            this.sku = sku;
+            this.quantityFree = quantityFree;
+        }
+    }
 }
+
