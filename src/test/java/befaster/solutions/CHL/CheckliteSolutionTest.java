@@ -43,4 +43,9 @@ public class CheckliteSolutionTest {
     public void givenFourAProductsAndFourB_thenTotalIs255() {
         assertThat(checkliteSolution.checklite("AAAABBBB"), Matchers.is(270));
     }
+
+    @Test
+    public void givenFourAProductsAndFourBOutOfOrder_thenTotalIs255() {
+        assertThat(checkliteSolution.checklite("ABABBABA"), Matchers.is(270));
+    }
 }

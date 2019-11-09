@@ -15,19 +15,26 @@ public class CheckliteSolution {
     }
 
     public Integer checklite(String basket) {
-        int total = 0;
-        Map<Character, Integer> productCounter = new HashMap<>();
+        Map<Character, Integer> productCounter = countEachProductInBasket(basket);
+        return calculateTotalPriceForProductCounts(productCounter);
+    }
 
+    private Map<Character, Integer> countEachProductInBasket(String basket) {
+        Map<Character, Integer> productCounter = new HashMap<>();
         for (char sku : basket.toCharArray()) {
             productCounter.merge(sku, 1, Integer::sum);
         }
+        return productCounter;
+    }
 
+    private int calculateTotalPriceForProductCounts(Map<Character, Integer> productCounter) {
+        int total = 0;
         for (char sku : productCounter.keySet()) {
             total += products.get(sku).calculatePriceFor(productCounter.get(sku));
         }
-
         return total;
     }
+
 
     private static class Product {
         private Integer price;
