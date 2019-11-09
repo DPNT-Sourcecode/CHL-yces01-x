@@ -15,16 +15,28 @@ public class CheckliteSolution {
     }
 
     public Integer checklite(String basket) {
-        Map<Character, Integer> productCounter = countEachProductInBasket(basket);
-        return calculateTotalPriceForProductCounts(productCounter);
+        try {
+            Map<Character, Integer> productCounter = countEachProductInBasket(basket);
+            return calculateTotalPriceForProductCounts(productCounter);
+        } catch (InvalidSkuException e) {
+            return -1;
+        }
     }
 
     private Map<Character, Integer> countEachProductInBasket(String basket) {
         Map<Character, Integer> productCounter = new HashMap<>();
         for (char sku : basket.toCharArray()) {
+            validateSku(sku);
             productCounter.merge(sku, 1, Integer::sum);
         }
+
         return productCounter;
+    }
+
+    private void validateSku(char sku) {
+        if (products.get(sku) == null) {
+            throw new InvalidSkuException();
+        }
     }
 
     private int calculateTotalPriceForProductCounts(Map<Character, Integer> productCounter) {
@@ -36,41 +48,7 @@ public class CheckliteSolution {
     }
 
 
-    private static class Product {
-        private Integer price;
-        private Integer multiBuyQuantity;
-        private Integer multiBuyPrice;
-
-        public Product(int price) {
-            this.price = price;
-            this.multiBuyQuantity = null;
-            this.multiBuyPrice = null;
-        }
-
-        public Product(int price, int multiBuyQuantity, int multiBuyPrice) {
-            this.price = price;
-            this.multiBuyQuantity = multiBuyQuantity;
-            this.multiBuyPrice = multiBuyPrice;
-        }
-
-        public Integer calculatePriceFor(Integer quantity) {
-            if (multiBuyAvailable()) {
-                return calculateMultiBuyPrice(quantity);
-            }
-
-            return price * quantity;
-
-        }
-
-        private boolean multiBuyAvailable() {
-            return multiBuyQuantity != null;
-        }
-
-        private Integer calculateMultiBuyPrice(Integer quantity) {
-            int multiBuys = quantity / multiBuyQuantity;
-            int remainderNonMultiBuys = quantity % multiBuyQuantity;
-
-            return (multiBuys * multiBuyPrice) + (remainderNonMultiBuys * price);
-        }
+    private static class InvalidSkuException extends RuntimeException {
     }
 }
+
