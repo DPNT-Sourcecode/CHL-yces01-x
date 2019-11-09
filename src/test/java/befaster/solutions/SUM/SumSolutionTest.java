@@ -19,4 +19,11 @@ public class SumSolutionTest {
     public void compute_sum() {
         assertThat(sum.compute(1, 1), equalTo(2));
     }
+
+    @Test
+    
+    public void givenAnIntegerIsLessThan0_thenThrowException() {
+
+    }
 }
+
