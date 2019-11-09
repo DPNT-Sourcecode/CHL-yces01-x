@@ -83,4 +83,3 @@ public class CheckliteSolution {
     private static class InvalidSkuException extends RuntimeException {
     }
 }
-
