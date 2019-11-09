@@ -1,9 +1,11 @@
 package befaster.solutions.CHL;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class Product {
     private Integer price;
-    private Integer multiBuyQuantity;
-    private Integer multiBuyPrice;
+    private List<Multibuy> multibuys = new ArrayList<>();
 
     public Product(int price) {
         this.price = price;
@@ -35,5 +37,8 @@ class Product {
         int remainderNonMultiBuys = quantity % multiBuyQuantity;
 
         return (multiBuys * multiBuyPrice) + (remainderNonMultiBuys * price);
+    }
+
+    private class Multibuy {
     }
 }

@@ -58,4 +58,9 @@ public class CheckliteSolutionTest {
     public void givenInvalidProductCodeInBasket_thenReturnError() {
         assertThat(checkliteSolution.checklite("BCXD"), Matchers.is(-1));
     }
+
+    @Test
+    public void givenTwoSpecialOffersX4YOnA_whenAddingSecondSpecialOffer_thenOfferIsApplied() {
+        assertThat(checkliteSolution.checklite("AAAAA"), Matchers.is(200));
+    }
 }
