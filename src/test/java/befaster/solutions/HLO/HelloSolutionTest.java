@@ -16,6 +16,6 @@ public class HelloSolutionTest {
     @Test
     public void testInitialHelloWorldIgnoringString() {
 //        MatcherAssert.assertThat(helloSolution.hello("friend"), Matchers.is("friend"));
-        MatcherAssert.assertThat(helloSolution.hello("anything"), Matchers.is("Hello, world!"));
+        MatcherAssert.assertThat(helloSolution.hello("anything"), Matchers.is("Hello, World!"));
     }
 }
