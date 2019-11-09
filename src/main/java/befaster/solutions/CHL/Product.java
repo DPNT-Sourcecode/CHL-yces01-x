@@ -3,17 +3,18 @@ package befaster.solutions.CHL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 class Product {
     private Integer price;
-    private List<Multibuy> multibuyOffers = new ArrayList<>();
-    private CrossProductOffer crossProductOffer;
+    private List<MultibuyOffer> multibuyOffers = new ArrayList<>();
+    private CrossProductOffer crossProductOffer = null;
 
     public Product(int price) {
         this.price = price;
     }
 
-    public Product(int price, List<Multibuy> multibuyOffers) {
+    public Product(int price, List<MultibuyOffer> multibuyOffers) {
         this.price = price;
         this.multibuyOffers = multibuyOffers;
     }
@@ -29,7 +30,7 @@ class Product {
         }
 
         List<Integer> offerCalculations = new ArrayList<>();
-        for (Multibuy multibuyOffer : multibuyOffers) {
+        for (MultibuyOffer multibuyOffer : multibuyOffers) {
             offerCalculations.add(multibuyOffer.calculateMultiBuyPrice(quantity, price));
         }
 
@@ -39,13 +40,24 @@ class Product {
 
     }
 
+    public Optional<Character> findMatchingCrossProductOffer(Integer quantityInBasket) {
+        if (crossProductOffer == null) {
+            return Optional.empty();
+        }
+
+        if (quantityInBasket > crossProductOffer.buyingQuantity) {
+            return Optional.of(crossProductOffer.freeCrossProduct);
+        }
+
+        return Optional.empty();
+    }
 
 
-    public static class Multibuy {
+    public static class MultibuyOffer {
         int multiBuyQuantity;
         int multiBuyPrice;
 
-        public Multibuy(int multiBuyQuantity, int multiBuyPrice) {
+        public MultibuyOffer(int multiBuyQuantity, int multiBuyPrice) {
             this.multiBuyQuantity = multiBuyQuantity;
             this.multiBuyPrice = multiBuyPrice;
         }
@@ -69,3 +81,4 @@ class Product {
         }
     }
 }
+

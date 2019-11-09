@@ -12,17 +12,19 @@ public class CheckliteSolution {
 
     public CheckliteSolution() {
         products.put('A', new Product(50, asList(
-                new Product.Multibuy(3, 130),
-                new Product.Multibuy(5, 200)))
+                new Product.MultibuyOffer(3, 130),
+                new Product.MultibuyOffer(5, 200)))
         );
 
         products.put('B', new Product(30, singletonList(
-                new Product.Multibuy(2, 45)))
+                new Product.MultibuyOffer(2, 45)))
         );
 
         products.put('C', new Product(20));
 
-        products.put('D', new Product(15,
+        products.put('D', new Product(15));
+
+        products.put('E', new Product(40,
                 new Product.CrossProductOffer(2, 'B'))
         );
     }
@@ -30,9 +32,22 @@ public class CheckliteSolution {
     public Integer checklite(String basket) {
         try {
             Map<Character, Integer> productCounter = countEachProductInBasket(basket);
+
+            for (char sku : productCounter.keySet()) {
+                products.get(sku).findMatchingCrossProductOffer(productCounter.get(sku)).ifPresent(freeSku -> removeFromCounter(productCounter, freeSku));
+            }
+
             return calculateTotalPriceForProductCounts(productCounter);
         } catch (InvalidSkuException e) {
             return -1;
+        }
+    }
+
+    private void removeFromCounter(Map<Character, Integer> productCounter, Character freeSku) {
+        Integer countForFreeProduct = productCounter.get(freeSku);
+
+        if (countForFreeProduct != null && countForFreeProduct > 0) {
+            productCounter.put(freeSku, countForFreeProduct - 1);
         }
     }
 
@@ -64,3 +79,4 @@ public class CheckliteSolution {
     private static class InvalidSkuException extends RuntimeException {
     }
 }
+
