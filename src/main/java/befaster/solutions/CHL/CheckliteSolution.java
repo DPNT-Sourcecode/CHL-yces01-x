@@ -21,7 +21,10 @@ public class CheckliteSolution {
         );
 
         products.put('C', new Product(20));
-        products.put('D', new Product(15));
+
+        products.put('D', new Product(15,
+                new Product.CrossProductOffer(2, 'B'))
+        );
     }
 
     public Integer checklite(String basket) {

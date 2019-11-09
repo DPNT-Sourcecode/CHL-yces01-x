@@ -7,6 +7,7 @@ import java.util.List;
 class Product {
     private Integer price;
     private List<Multibuy> multibuyOffers = new ArrayList<>();
+    private CrossProductOffer crossProductOffer;
 
     public Product(int price) {
         this.price = price;
@@ -17,6 +18,10 @@ class Product {
         this.multibuyOffers = multibuyOffers;
     }
 
+    public Product(Integer price, CrossProductOffer crossProductOffer) {
+        this.price = price;
+        this.crossProductOffer = crossProductOffer;
+    }
 
     public Integer calculatePriceFor(Integer quantity) {
         if (multibuyOffers.isEmpty()) {
@@ -51,6 +56,16 @@ class Product {
             int remainderNonMultiBuys = quantity % multiBuyQuantity;
 
             return (multiBuys * multiBuyPrice) + (remainderNonMultiBuys * individualPrice);
+        }
+    }
+
+    public static class CrossProductOffer {
+        int buyingQuantity;
+        char freeCrossProduct;
+
+        public CrossProductOffer(int buyingQuantity, char freeCrossProduct) {
+            this.buyingQuantity = buyingQuantity;
+            this.freeCrossProduct = freeCrossProduct;
         }
     }
 }

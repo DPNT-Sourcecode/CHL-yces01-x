@@ -68,4 +68,9 @@ public class CheckliteSolutionTest {
     public void givenTwoSpecialOffersX4YOnA_whenTwoOffersApply_thenChepestShouldBeApplied() {
         assertThat(checkliteSolution.checklite("AAAAAA"), Matchers.is(250));
     }
+
+    @Test
+    public void givenTwoEsAndOneB_thenTotalShouldBeForTwoEsOnly() {
+        assertThat(checkliteSolution.checklite("EEB"), Matchers.is(80));
+    }
 }
