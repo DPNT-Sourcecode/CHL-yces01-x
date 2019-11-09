@@ -11,7 +11,6 @@ public class SumSolutionTest {
 
     @Before
     public void setUp() {
-
         sum = new SumSolution();
     }
 
@@ -30,5 +29,6 @@ public class SumSolutionTest {
         sum.compute(101, 1);
     }
 }
+
 
 
