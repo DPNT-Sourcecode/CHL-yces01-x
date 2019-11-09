@@ -48,4 +48,14 @@ public class CheckliteSolutionTest {
     public void givenFourAProductsAndFourBOutOfOrder_thenTotalIs255() {
         assertThat(checkliteSolution.checklite("ABABBABA"), Matchers.is(270));
     }
+
+    @Test
+    public void givenOneOFEachProductAtoD_totalIs115() {
+        assertThat(checkliteSolution.checklite("ABCD"), Matchers.is(115));
+    }
+
+    @Test
+    public void givenInvalidProductCodeInBasket_thenReturnError() {
+        assertThat(checkliteSolution.checklite("BCXD"), Matchers.is(-1));
+    }
 }
