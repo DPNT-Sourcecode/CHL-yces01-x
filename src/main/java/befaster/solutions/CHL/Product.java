@@ -29,12 +29,17 @@ class Product {
         }
 
         int total = 0;
-        for (MultibuyOffer multibuyOffer : multibuyOffers) {
-            if (multibuyOffer.matchesMultiBuy(quantity)) {
-                quantity -= multibuyOffer.multiBuyQuantity;
-                total += multibuyOffer.multiBuyPrice;
+        boolean multiBuyMatch;
+        do {
+            multiBuyMatch = false;
+            for (MultibuyOffer multibuyOffer : multibuyOffers) {
+                if (multibuyOffer.matchesMultiBuy(quantity)) {
+                    multiBuyMatch = true;
+                    quantity -= multibuyOffer.multiBuyQuantity;
+                    total += multibuyOffer.multiBuyPrice;
+                }
             }
-        }
+        } while (multiBuyMatch);
 
         if (quantity > 0) {
             total += quantity * price;
@@ -117,5 +122,6 @@ class Product {
         }
     }
 }
+
 
 
