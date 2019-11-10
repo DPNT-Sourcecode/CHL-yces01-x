@@ -12,8 +12,8 @@ public class CheckliteSolution {
 
     public CheckliteSolution() {
         products.put('A', new Product(50, asList(
-                new Product.MultibuyOffer(3, 130),
-                new Product.MultibuyOffer(5, 200))));
+                new Product.MultibuyOffer(5, 200),
+                new Product.MultibuyOffer(3, 130))));
         products.put('B', new Product(30, singletonList(
                 new Product.MultibuyOffer(2, 45))));
         products.put('C', new Product(20));

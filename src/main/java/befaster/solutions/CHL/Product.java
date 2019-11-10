@@ -1,6 +1,7 @@
 package befaster.solutions.CHL;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,24 +29,14 @@ class Product {
             return price * quantity;
         }
 
-        int total = 0;
-        boolean multiBuyMatch;
-        do {
-            multiBuyMatch = false;
-            for (MultibuyOffer multibuyOffer : multibuyOffers) {
-                if (multibuyOffer.matchesMultiBuy(quantity)) {
-                    multiBuyMatch = true;
-                    quantity -= multibuyOffer.multiBuyQuantity;
-                    total += multibuyOffer.multiBuyPrice;
-                }
-            }
-        } while (multiBuyMatch);
-
-        if (quantity > 0) {
-            total += quantity * price;
+        List<Integer> offerCalculations = new ArrayList<>();
+        for (MultibuyOffer multibuyOffer : multibuyOffers) {
+            offerCalculations.add(multibuyOffer.calculateMultiBuyPrice(quantity, price));
         }
 
-        return total;
+        Collections.sort(offerCalculations);
+
+        return offerCalculations.get(0);
 
     }
 
@@ -73,24 +64,12 @@ class Product {
             this.multiBuyPrice = multiBuyPrice;
         }
 
-        boolean matchesMultiBuy(Integer quantity) {
-            return quantity >= multiBuyQuantity;
-//            if (quantity > multiBuyQuantity) {
-//                int multiBuys = quantity / multiBuyQuantity;
-//            }
-////            int remainderNonMultiBuys = quantity % multiBuyQuantity;
-//
-//            return new MultiBuyMatch(multiBuys * multiBuyQuantity, multiBuys * multiBuyPrice);
-        }
+        Integer calculateMultiBuyPrice(Integer quantity, Integer individualPrice) {
 
-        static class MultiBuyMatch {
-            int quantityInMultibuy;
-            int totalMultiBuyPrice;
+            int multiBuys = quantity / multiBuyQuantity;
+            int remainderNonMultiBuys = quantity % multiBuyQuantity;
 
-            public MultiBuyMatch(int quantityInMultibuy, int totalMultiBuyPrice) {
-                this.quantityInMultibuy = quantityInMultibuy;
-                this.totalMultiBuyPrice = totalMultiBuyPrice;
-            }
+            return (multiBuys * multiBuyPrice) + (remainderNonMultiBuys * individualPrice);
         }
     }
 
@@ -122,6 +101,3 @@ class Product {
         }
     }
 }
-
-
-
