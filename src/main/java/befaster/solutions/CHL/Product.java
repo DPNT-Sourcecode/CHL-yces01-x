@@ -1,7 +1,6 @@
 package befaster.solutions.CHL;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,14 +28,20 @@ class Product {
             return price * quantity;
         }
 
-        List<Integer> offerCalculations = new ArrayList<>();
+//        List<Integer> offerCalculations = new ArrayList<>();
+        int total = 0;
         for (MultibuyOffer multibuyOffer : multibuyOffers) {
-            offerCalculations.add(multibuyOffer.calculateMultiBuyPrice(quantity, price));
+            total += multibuyOffer.calculateMultiBuyPrice(quantity);
+            quantity -= multibuyOffer.calculateQuantityCoveredInMultiBuy(quantity);
         }
 
-        Collections.sort(offerCalculations);
+//        Collections.sort(offerCalculations);
 
-        return offerCalculations.get(0);
+        if (quantity > 0) {
+            total += quantity * price;
+        }
+
+        return total;
 
     }
 
@@ -64,12 +69,16 @@ class Product {
             this.multiBuyPrice = multiBuyPrice;
         }
 
-        Integer calculateMultiBuyPrice(Integer quantity, Integer individualPrice) {
+        Integer calculateQuantityCoveredInMultiBuy(Integer quantity) {
+            return (quantity / multiBuyQuantity) * multiBuyQuantity;
+        }
+
+        Integer calculateMultiBuyPrice(Integer quantity) {
 
             int multiBuys = quantity / multiBuyQuantity;
-            int remainderNonMultiBuys = quantity % multiBuyQuantity;
+//            int remainderNonMultiBuys = quantity % multiBuyQuantity;
 
-            return (multiBuys * multiBuyPrice) + (remainderNonMultiBuys * individualPrice);
+            return (multiBuys * multiBuyPrice); // + (remainderNonMultiBuys * individualPrice);
         }
     }
 
@@ -101,3 +110,4 @@ class Product {
         }
     }
 }
+
