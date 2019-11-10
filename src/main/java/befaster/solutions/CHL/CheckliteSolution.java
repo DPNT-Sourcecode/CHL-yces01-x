@@ -30,7 +30,7 @@ public class CheckliteSolution {
 
             for (char sku : productCounter.keySet()) {
                 products.get(sku)
-                        .findMatchingCrossProductOffer(productCounter.get(sku))
+                        .findMatchingCrossProductOffer(sku, productCounter.get(sku))
                         .ifPresent(freeSku -> removeFromCounter(productCounter, freeSku));
             }
 
@@ -85,3 +85,4 @@ public class CheckliteSolution {
     private static class InvalidSkuException extends RuntimeException {
     }
 }
+

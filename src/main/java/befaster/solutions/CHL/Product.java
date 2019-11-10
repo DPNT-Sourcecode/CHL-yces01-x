@@ -43,12 +43,16 @@ class Product {
 
     }
 
-    public Optional<MatchingCrossProductOffer> findMatchingCrossProductOffer(Integer quantityInBasket) {
+    public Optional<MatchingCrossProductOffer> findMatchingCrossProductOffer(char buyingSku, Integer quantityInBasket) {
         if (crossProductOffer == null) {
             return Optional.empty();
         }
 
-        if (quantityInBasket >= crossProductOffer.buyingQuantity) {
+        if (buyingSku == crossProductOffer.freeCrossProduct) {
+            int buyingPlusFreeTotal = crossProductOffer.buyingQuantity + 1;
+            return Optional.of(new MatchingCrossProductOffer(crossProductOffer.freeCrossProduct, quantityInBasket / buyingPlusFreeTotal));
+
+        } else if (quantityInBasket >= crossProductOffer.buyingQuantity) {
             return Optional.of(new MatchingCrossProductOffer(
                     crossProductOffer.freeCrossProduct, quantityInBasket / crossProductOffer.buyingQuantity)
             );
@@ -105,3 +109,4 @@ class Product {
         }
     }
 }
+
