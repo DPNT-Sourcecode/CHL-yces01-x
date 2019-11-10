@@ -102,6 +102,15 @@ public class CheckliteSolutionTest {
     @Test
     public void givenMix_thenTotalShouldBeForFourEsAndOneB() {
         assertThat(checkliteSolution.checklite("AAAAAEEBAAABB"), Matchers.is(455));
+    }
 
+    @Test
+    public void twoFsGetOneFree() {
+        assertThat(checkliteSolution.checklite("FFF"), Matchers.is(20));
+    }
+
+    @Test
+    public void fourFsGetTwoFree() {
+        assertThat(checkliteSolution.checklite("FFFFFF"), Matchers.is(40));
     }
 }
