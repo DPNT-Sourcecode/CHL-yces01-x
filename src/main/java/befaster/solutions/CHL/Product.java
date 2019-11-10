@@ -30,9 +30,10 @@ class Product {
 
         int total = 0;
         for (MultibuyOffer multibuyOffer : multibuyOffers) {
-            MultibuyOffer.MultiBuyMatch multiBuyMatch = multibuyOffer.calculateMultiBuyPrice(quantity);
-            quantity -= multiBuyMatch.quantityInMultibuy;
-            total += multiBuyMatch.totalMultiBuyPrice;
+            if (multibuyOffer.matchesMultiBuy(quantity)) {
+                quantity -= multibuyOffer.multiBuyQuantity;
+                total += multibuyOffer.multiBuyPrice;
+            }
         }
 
         if (quantity > 0) {
@@ -67,12 +68,14 @@ class Product {
             this.multiBuyPrice = multiBuyPrice;
         }
 
-        MultiBuyMatch calculateMultiBuyPrice(Integer quantity) {
-
-            int multiBuys = quantity / multiBuyQuantity;
-//            int remainderNonMultiBuys = quantity % multiBuyQuantity;
-
-            return new MultiBuyMatch(multiBuys * multiBuyQuantity, multiBuys * multiBuyPrice);
+        boolean matchesMultiBuy(Integer quantity) {
+            return quantity >= multiBuyQuantity;
+//            if (quantity > multiBuyQuantity) {
+//                int multiBuys = quantity / multiBuyQuantity;
+//            }
+////            int remainderNonMultiBuys = quantity % multiBuyQuantity;
+//
+//            return new MultiBuyMatch(multiBuys * multiBuyQuantity, multiBuys * multiBuyPrice);
         }
 
         static class MultiBuyMatch {
@@ -114,4 +117,5 @@ class Product {
         }
     }
 }
+
 
