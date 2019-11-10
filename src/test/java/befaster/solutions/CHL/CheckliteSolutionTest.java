@@ -101,7 +101,7 @@ public class CheckliteSolutionTest {
 
     @Test
     public void givenMix_thenTotalShouldBeForFourEsAndOneB() {
-        assertThat(checkliteSolution.checklite("AAAAAEEBAAABB"), Matchers.is(380));
+        assertThat(checkliteSolution.checklite("AAAAAEEBAAABB"), Matchers.is(455));
 
     }
 }
