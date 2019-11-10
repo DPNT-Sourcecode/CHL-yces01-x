@@ -28,7 +28,6 @@ class Product {
             return price * quantity;
         }
 
-//        List<Integer> offerCalculations = new ArrayList<>();
         int total = 0;
         for (MultibuyOffer multibuyOffer : multibuyOffers) {
             total += multibuyOffer.calculateMultiBuyPrice(quantity);
@@ -50,12 +49,12 @@ class Product {
 
         if (buyingSku == crossProductOffer.freeCrossProduct) {
             int buyingPlusFreeTotal = crossProductOffer.buyingQuantity + 1;
-            return Optional.of(new MatchingCrossProductOffer(crossProductOffer.freeCrossProduct, quantityInBasket / buyingPlusFreeTotal));
+            return Optional.of(new MatchingCrossProductOffer(
+                    crossProductOffer.freeCrossProduct, quantityInBasket / buyingPlusFreeTotal));
 
         } else if (quantityInBasket >= crossProductOffer.buyingQuantity) {
             return Optional.of(new MatchingCrossProductOffer(
-                    crossProductOffer.freeCrossProduct, quantityInBasket / crossProductOffer.buyingQuantity)
-            );
+                    crossProductOffer.freeCrossProduct, quantityInBasket / crossProductOffer.buyingQuantity));
         }
 
         return Optional.empty();

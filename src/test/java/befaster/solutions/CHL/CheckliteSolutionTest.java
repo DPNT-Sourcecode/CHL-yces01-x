@@ -110,7 +110,13 @@ public class CheckliteSolutionTest {
     }
 
     @Test
-    public void fourFsGetTwoFree() {
+    public void sixFsShouldGetTwoFree() {
         assertThat(checkliteSolution.checklite("FFFFFF"), Matchers.is(40));
     }
+
+    @Test
+    public void sevenFsShouldGetTwoFree() {
+        assertThat(checkliteSolution.checklite("FFFFFFF"), Matchers.is(50));
+    }
+
 }
