@@ -35,8 +35,6 @@ class Product {
             quantity -= multibuyOffer.calculateQuantityCoveredInMultiBuy(quantity);
         }
 
-//        Collections.sort(offerCalculations);
-
         if (quantity > 0) {
             total += quantity * price;
         }
@@ -74,11 +72,8 @@ class Product {
         }
 
         Integer calculateMultiBuyPrice(Integer quantity) {
-
             int multiBuys = quantity / multiBuyQuantity;
-//            int remainderNonMultiBuys = quantity % multiBuyQuantity;
-
-            return (multiBuys * multiBuyPrice); // + (remainderNonMultiBuys * individualPrice);
+            return (multiBuys * multiBuyPrice);
         }
     }
 
@@ -110,4 +105,5 @@ class Product {
         }
     }
 }
+
 

@@ -50,7 +50,7 @@ public class CheckliteSolution {
     }
 
     private Integer calculateNewQuantityOfFreeProduct(Product.MatchingCrossProductOffer matchingCrossProductOffer, Integer countForFreeProduct) {
-        countForFreeProduct = countForFreeProduct - matchingCrossProductOffer.getFreeQuantity();
+        countForFreeProduct -= matchingCrossProductOffer.getFreeQuantity();
         if (countForFreeProduct < 0) {
             countForFreeProduct = 0;
         }
@@ -85,3 +85,4 @@ public class CheckliteSolution {
     private static class InvalidSkuException extends RuntimeException {
     }
 }
+
