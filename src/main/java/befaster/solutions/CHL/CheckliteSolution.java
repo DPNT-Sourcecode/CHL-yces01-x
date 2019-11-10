@@ -22,6 +22,36 @@ public class CheckliteSolution {
                 new Product.CrossProductOffer(2, 'B')));
         products.put('F', new Product(10,
                 new Product.CrossProductOffer(2, 'F')));
+        products.put('G', new Product(20));
+        products.put('H', new Product(10, asList(
+                new Product.MultibuyOffer(10, 80),
+                new Product.MultibuyOffer(5, 45))));
+        products.put('I', new Product(35));
+        products.put('J', new Product(60));
+        products.put('K', new Product(80, singletonList(
+                new Product.MultibuyOffer(2, 150))));
+        products.put('L', new Product(90));
+        products.put('M', new Product(15));
+        products.put('N', new Product(40,
+                new Product.CrossProductOffer(3, 'M')));
+        products.put('O', new Product(10));
+        products.put('P', new Product(50, singletonList(
+                new Product.MultibuyOffer(5, 200))));
+        products.put('Q', new Product(30, singletonList(
+                new Product.MultibuyOffer(3, 80))));
+        products.put('R', new Product(50,
+                new Product.CrossProductOffer(3, 'Q')));
+        products.put('S', new Product(30));
+        products.put('T', new Product(20));
+        products.put('U', new Product(40,
+                new Product.CrossProductOffer(3, 'U')));
+        products.put('V', new Product(50, asList(
+                new Product.MultibuyOffer(3, 130),
+                new Product.MultibuyOffer(2, 90))));
+        products.put('W', new Product(20));
+        products.put('X', new Product(90));
+        products.put('Y', new Product(10));
+        products.put('Z', new Product(50));
     }
 
     public Integer checklite(String basket) {
@@ -85,4 +115,5 @@ public class CheckliteSolution {
     private static class InvalidSkuException extends RuntimeException {
     }
 }
+
 
